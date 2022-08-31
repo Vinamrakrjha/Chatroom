@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { db, auth } from '../firebase.js'
-import { Input, Button } from '@mui/material'
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 
@@ -9,11 +8,11 @@ function SendMessage({scroll}) {
 
     async function sendMessage(e) {
         e.preventDefault();
-        const { uid, photoURL } = auth.currentUser;
+        const {photoURL, displayName } = auth.currentUser;
         await addDoc(collection(db, "messages"), {
             text: msg,
             photoURL,
-            uid,
+            displayName,
             createdAt: serverTimestamp()
         });
         setMsg('');
@@ -21,11 +20,11 @@ function SendMessage({scroll}) {
     }
 
     return (
-        <div>
+        <div className='sendMsg'>
             <form onSubmit={sendMessage}>
-                <div className="sendMsg">
-                    <Input style={{ width: '78%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }} value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="Type here..." />
-                    <Button disabled={msg===''} style={{ width: '18%', fontSize: '15px', fontWeight: '550', margin: '4px 5% -13px 5%', maxWidth: '200px' }} type='submit' variant="contained" >Send</Button>
+                <div className='inner-sendMsg'>
+                    <input value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="Type here..." />
+                    <button disabled={msg===''} id="send-button" type='submit'>Send</button>
                 </div>
             </form>
         </div>

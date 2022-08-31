@@ -1,12 +1,19 @@
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase.js';
-import {Button} from '@mui/material';
+import '../App.css'
 
 function SignOUT() {
   return (
-    <div style={{
-      display: 'flex', justifyContent: 'center', marginLeft : '-10px',position: 'fixed', width: '100%', backgroundColor: '#FAFAFA', top: 0, borderBottom: 'solid 1px lightgray', zIndex: '10'}}>
-        <Button style={{ padding: '20px', backgroundColor: 'rgb(247,198,46)',fontSize: '15px', borderRadius: '0', fontWeight: '600' }} variant="contained" onClick={()=>signOut(auth)} >Sign Out</Button>
+    <div id="outest-signout">
+      <div id="outer-signout">
+        <div id="inner-signout">
+          <h2 id="chatroom-word-2">Chatroom</h2>
+          <svg xmlns="http://www.w3.org/2000/svg" height="32" width= "32" fill="rgb(33,150,243)" className="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+            <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+          </svg>
+        </div>
+        <button id="signout-button" onClick={() => signOut(auth)}>Sign-OUT</button>
+      </div>
     </div>
   )
 }
